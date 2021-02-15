@@ -21,6 +21,9 @@ TODO вставить пример, размытия
 
 ![formula](https://render.githubusercontent.com/render/math?math=\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i+s,j+t}*W_{st}}{{ \sum_{s=-k}^k}{\sum_{t=-k}^k}{W_{st}}})
 
+![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
+
+
 где 
 $$  W_{st} = e^{-\frac{s^2 + t^2} {2k^2}} *  e^{-\frac{I__{i+s,j+t} - I__{ij}} {2d^2}} 
 $$
