@@ -9,22 +9,17 @@
 где:
 ![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;I__{ij}) - исходное изображение
 ![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;U_{ij}) - полезный сигнал
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;{\xi}_{ij}`) -  помехи
+![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;{\xi}_{ij}) -  помехи
 
-####проблематика в рассмотренная в статье:
-Наибольшие искажения при работе обыных фильров, основанных на линейных операторах, например [медианного](https://github.com/alehay/median_filter) происходят на границе резкого перепада яркостей.
+###проблематика в рассмотренная в статье:
+Наибольшие искажения при работе обыных фильров, основанных на линейных операторах, например [медианного](https://github.com/alehay/median_filter) происходят на границе резкого перепада яркостей:
+![](https://github.com/alehay/bilateral_filter/blob/main/staff/linear.png)
 
-TODO вставить пример, размытия
-
-####предложенное решение:
+###предложенное решение:
 Авторы статьи предлагают использовать билатеральный фильтр , основанный на нелинейном операторе:
-
-![equation](https://render.githubusercontent.com/render/math?math=\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i+s,j+t}*W_{st}}{{ \sum_{s=-k}^k}{\sum_{t=-k}^k}{W_{st}}})
-
 
 ![](https://latex.codecogs.com/gif.latex?%5Chuge%20%5Cfrac%7B%7B%5Csum_%7Bs%3D-k%7D%5Ek%7D%7B%5Csum_%7Bt%3D-k%7D%5Ek%7DI_%7Bi&plus;s%2Cj&plus;t%7D*W_%7Bst%7D%7D%7B%7B%20%5Csum_%7Bs%3D-k%7D%5Ek%7D%7B%5Csum_%7Bt%3D-k%7D%5Ek%7D*%7BW_%7Bst%7D%7D%7D%29)  
 
-"$e^{i \\pi} = -1$"
 
 
 где 
