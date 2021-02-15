@@ -25,6 +25,9 @@ TODO вставить пример, размытия
 
 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
+"$e^{i \\pi} = -1$"
+
+
 где 
 $$  W_{st} = e^{-\frac{s^2 + t^2} {2k^2}} *  e^{-\frac{I__{i+s,j+t} - I__{ij}} {2d^2}} 
 $$
