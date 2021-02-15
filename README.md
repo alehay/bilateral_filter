@@ -21,11 +21,8 @@ TODO вставить пример, размытия
 
 ![equation](https://render.githubusercontent.com/render/math?math=\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i+s,j+t}*W_{st}}{{ \sum_{s=-k}^k}{\sum_{t=-k}^k}{W_{st}}})
 
-![equation](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
-
-![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D)  
+![equation](https://latex.codecogs.com/gif.download?%5Cinline%20%5Cfrac%7B%7B%5Csum_%7Bs%3D-k%7D%5Ek%7D%7B%5Csum_%7Bt%3D-k%7D%5Ek%7DI_%7Bi+s%2Cj+t%7D*W_%7Bst%7D%7D%7B%7B%20%5Csum_%7Bs%3D-k%7D%5Ek%7D%7B%5Csum_%7Bt%3D-k%7D%5Ek%7D*%7BW_%7Bst%7D%7D%7D%29)  
 
 "$e^{i \\pi} = -1$"
 
