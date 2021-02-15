@@ -4,7 +4,7 @@
  авторы А. И. Новиков, А. В. Пронькин;
 
 авторы используют простую аддитивная модель: 
-![](hhttp://latex.codecogs.com/gif.latex?%5Cdpi%7B50%7D%20%20I__%7Bij%7D%20=%20U___%7Bij%7D%20%20&plus;%20%7B%5Cxi%7D_%7Bij%7D%20)
+![](https://latex.codecogs.com/gif.latex?\LARGE&space;I__{ij}&space;=&space;U___{ij}&space;&plus;&space;{\xi}_{ij})
 
 где:
 $$I__{ij} $$ - исходное изображение
