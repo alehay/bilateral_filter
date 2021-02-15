@@ -7,9 +7,9 @@
 ![](http://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20I__%7Bij%7D%20=%20U___%7Bij%7D%20%20&plus;%20%7B%5Cxi%7D_%7Bij%7D)
 
 где:
-$$I__{ij} $$ - исходное изображение
-$$U_{ij} $$ - полезный сигнал
-$${\xi}_{ij} $$  помехи
+![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;I__{ij}) - исходное изображение
+![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;U_{ij}) - полезный сигнал
+![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;\bg_black&space;{\xi}_{ij}`) -  помехи
 
 ####проблематика в рассмотренная в статье:
 Наибольшие искажения при работе обыных фильров, основанных на линейных операторах, например [медианного](https://github.com/alehay/median_filter) происходят на границе резкого перепада яркостей.
