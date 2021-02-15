@@ -25,6 +25,8 @@ TODO вставить пример, размытия
 
 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
+![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D)  
+
 "$e^{i \\pi} = -1$"
 
 
