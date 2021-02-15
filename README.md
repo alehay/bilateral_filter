@@ -19,9 +19,9 @@ TODO вставить пример, размытия
 ####предложенное решение:
 Авторы статьи предлагают использовать билатеральный фильтр , основанный на нелинейном операторе:
 
-![formula](https://render.githubusercontent.com/render/math?math=\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i+s,j+t}*W_{st}}{{ \sum_{s=-k}^k}{\sum_{t=-k}^k}{W_{st}}})
+![equation](https://render.githubusercontent.com/render/math?math=\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i+s,j+t}*W_{st}}{{ \sum_{s=-k}^k}{\sum_{t=-k}^k}{W_{st}}})
 
-![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
+![equation](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
