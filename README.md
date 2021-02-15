@@ -18,16 +18,18 @@
 ###предложенное решение:
 Авторы статьи предлагают использовать билатеральный фильтр , основанный на нелинейном операторе:
 
-![](https://latex.codecogs.com/gif.latex?%5Chuge%20%5Cfrac%7B%7B%5Csum_%7Bs%3D-k%7D%5Ek%7D%7B%5Csum_%7Bt%3D-k%7D%5Ek%7DI_%7Bi&plus;s%2Cj&plus;t%7D*W_%7Bst%7D%7D%7B%7B%20%5Csum_%7Bs%3D-k%7D%5Ek%7D%7B%5Csum_%7Bt%3D-k%7D%5Ek%7D*%7BW_%7Bst%7D%7D%7D%29)  
+![](http://latex.codecogs.com/gif.latex?\dpi{150}&space;\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i&plus;s,j&plus;t}*W_{st}}{{&space;\sum_{s=-k}^k}{\sum_{t=-k}^k}{W_{st}}}&space;)  
+
+
 
 
 
 где 
-![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;W_{st}&space;=&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}}&space;*&space;&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)
+![](http://latex.codecogs.com/gif.latex?\dpi{150}&space;W_{st}&space;=&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}}&space;*&space;&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)
 
 в свою очередь:
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}})-множитель расстояния :
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;) -множитель разности в яркости ;
+![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}})-множитель расстояния :
+![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;) -множитель разности в яркости ;
 
 смысл данного данного филтра прост: 
 
