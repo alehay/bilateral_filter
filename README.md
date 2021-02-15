@@ -4,10 +4,10 @@
  авторы А. И. Новиков, А. В. Пронькин;
 
 авторы используют простую аддитивная модель: 
-![](http://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20I__%7Bij%7D%20=%20U___%7Bij%7D%20%20&plus;%20%7B%5Cxi%7D_%7Bij%7D)
+![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;$$I_{ij}&space;=&space;U_{ij}&space;&space;&plus;&space;{\xi}_{ij}&space;)
 
 где:
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;I__{ij}) - исходное изображение
+![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;I_{ij}) - исходное изображение
 ![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;U_{ij}) - полезный сигнал
 ![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;{\xi}_{ij}) -  помехи
 
