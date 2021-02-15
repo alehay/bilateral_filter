@@ -17,6 +17,7 @@
 ### проблематика в рассмотренная в статье:
 
 Наибольшие искажения при работе обыных фильров, основанных на линейных операторах, например [медианного](https://github.com/alehay/median_filter) происходят на границе резкого перепада яркостей:
+
 ![](https://github.com/alehay/bilateral_filter/blob/main/staff/linear.png)
 
 ### предложенное решение:
@@ -29,9 +30,10 @@
 ![](http://latex.codecogs.com/gif.latex?\dpi{200}&space;W_{st}&space;=&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}}&space;*&space;&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)
 
 в свою очередь:
-![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}})-множитель расстояния ;
 
-![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;) -множитель разности в яркости ;
+![](http://latex.codecogs.com/gif.latex?\dpi{150}&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}})  -множитель расстояния ;
+
+![](http://latex.codecogs.com/gif.latex?\dpi{150}&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)  -множитель разности в яркости ;
 
 ### смысл данного данного фильтра прост: 
 
