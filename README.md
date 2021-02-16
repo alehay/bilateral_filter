@@ -3,7 +3,7 @@
 [оригинальная статья](http://vestnik.rsreu.ru/images/archive/2018/4-66-1/2.4_.pdf)
  авторы А. И. Новиков, А. В. Пронькин;
 
-авторы используют простую аддитивная модель: 
+авторы используют простую аддитивную модель: 
 ![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;$$I_{ij}&space;=&space;U_{ij}&space;&space;&plus;&space;{\xi}_{ij}&space;)
 
 где:
