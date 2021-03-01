@@ -28,7 +28,7 @@
 
 где:  
 
-![](http://latex.codecogs.com/gif.latex?\dpi{190}&space;W_{st}&space;=&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}}&space;*&space;&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)
+![](http://latex.codecogs.com/gif.latex?\dpi{200}&space;W_{st}&space;=&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}}&space;*&space;&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)
 
 в свою очередь:
 
