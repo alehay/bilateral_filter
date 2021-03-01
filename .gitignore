@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+
+bilateral_filter/build-bilateral_filter-Desktop-Debug
+bilateral_filter/build-bilateral_filter-Desktop-Release
