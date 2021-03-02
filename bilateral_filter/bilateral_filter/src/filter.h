@@ -43,6 +43,7 @@ private:
     long coordntToInd(Coordinate coor);
     void calcDistanceMask ();
     void calcBrihtnessMask ();
+    bool is_border (long index);
 
 public:
     Filter() = delete;

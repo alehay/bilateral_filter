@@ -36,8 +36,19 @@ long Filter::coordntToInd (Coordinate coor) {
 };
 
 void Filter::run () {
-    for (int i = 0; i < f_width * f_height; ++i) {
-        out_img[i] = in_img[i];
+    for (int cell = 0; cell < f_width * f_height; ++cell) {
+        if (is_border (cell)) {out_img[cell] = in_img[cell]; continue;}
+        std::vector <std::uint8_t> neighbor (kernelSize*kernelSize);
+        // test test test
+        int start = cell - (kernelSize - 1) / 2 * f_width - (kernelSize - 1) / 2;
+        int stop  = cell + (kernelSize - 1) / 2 * f_width + (kernelSize - 1) / 2;
+        int index {0};
+        double sum{0};
+
+        for (auto && [coord, val]  : distanceMask) {
+            sum += in_img [ coordntToInd (coord)];
+        }
+        out_img [cell] = sum/(kernelSize*kernelSize);
     }
 }
 
@@ -73,6 +84,19 @@ void Filter::calcDistanceMask () {
         }
     }
 }
+
+bool Filter::is_border (long index) {
+    // верхняя
+    if ( index >= 0 && index <= f_width * (kernelSize - 1) / 2) { return true; }
+    // левая граница
+    if ( index % f_width < (kernelSize - 1) / 2) { return true; }
+    // нижняя
+    if (  index >= f_width * (f_height - (kernelSize - 1) / 2)) { return true; }
+    // правая
+    if (index % f_width >= f_width - (kernelSize - 1) / 2)  { return true; }
+    return false;
+}
+
 
 
 

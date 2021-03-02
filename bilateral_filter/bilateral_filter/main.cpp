@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         QString fileIndex = iterator.fileName();
         QString lastBit = fileIndex.section("/", -1, -1);
         QStringList name = lastBit.split('.');
-        Filter filter (img.constBits (),img.width () ,img.height (), 15, 20);
+        Filter filter (img.constBits (),img.width () ,img.height (), 10, 25);
         filter.run ();
         QString outFileName = outputDir + name[0];
         filter.savePng (outFileName);
