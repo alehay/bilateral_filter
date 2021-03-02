@@ -34,7 +34,7 @@
 
 ![](http://latex.codecogs.com/gif.latex?\dpi{170}&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}})   -множитель расстояния;
 
-![](http://latex.codecogs.com/gif.latex?\dpi{170}&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)   -множитель разности в яркости ;
+![](http://latex.codecogs.com/gif.latex?\dpi{170}&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}^2 &space;{2d^2}}&space;)   -множитель разности в яркости ;
 
 
 ### Смысл данного данного фильтра прост: 
