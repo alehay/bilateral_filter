@@ -41,6 +41,7 @@ private:
 
     Coordinate indToCoordnt (long index);
     long coordntToInd(Coordinate coor);
+    long reltCoorToIndex(const Coordinate & coor, long startIndex);
     void calcDistanceMask ();
     void calcBrihtnessMask ();
     bool is_border (long index);

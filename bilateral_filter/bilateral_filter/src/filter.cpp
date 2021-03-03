@@ -17,9 +17,6 @@ Filter::Filter(const std::uint8_t * in_image ,
         if ( !(i % f_width)) { std::cout << std::endl;}
         in_img [i] = in_image[i];
 
-        #ifdef DEBUG
-            std::cout << static_cast <unsigned> (in_img [i]) << " " ;
-        #endif
     }
     calcBrihtnessMask();
     calcDistanceMask ();
@@ -36,19 +33,28 @@ long Filter::coordntToInd (Coordinate coor) {
 };
 
 void Filter::run () {
+    //iteration over all pixels
     for (int cell = 0; cell < f_width * f_height; ++cell) {
+        // do not process the border
         if (is_border (cell)) {out_img[cell] = in_img[cell]; continue;}
-        std::vector <std::uint8_t> neighbor (kernelSize*kernelSize);
-        // test test test
-        int start = cell - (kernelSize - 1) / 2 * f_width - (kernelSize - 1) / 2;
-        int stop  = cell + (kernelSize - 1) / 2 * f_width + (kernelSize - 1) / 2;
-        int index {0};
-        double sum{0};
+        // sum weight * pixel
+        double sum_pixel{0};
+        // sum weight
+        double sum_weight{0};
 
-        for (auto && [coord, val]  : distanceMask) {
-            sum += in_img [ coordntToInd (coord)];
+        //distance Mask stores enumerated coordinates
+        for (auto && [coord, val] : distanceMask) {
+            // pixel index by coordinate
+            long pix_ind = reltCoorToIndex(coord, cell);
+            int differenBriht = abs (in_img[pix_ind] - in_img [cell]);
+            //sum_weight +=  val * brightnessMask[differenBriht];
+            //sum_pixel += val * brightnessMask[differenBriht]*in_img[pix_ind];
+
+            double weight =  val * brightnessMask[differenBriht];
+            sum_weight +=  weight;
+            sum_pixel += weight*in_img[pix_ind];
         }
-        out_img [cell] = sum/(kernelSize*kernelSize);
+        out_img [cell] =static_cast <uint8_t> (sum_pixel/sum_weight);
     }
 }
 
@@ -73,7 +79,7 @@ void Filter::calcDistanceMask () {
     for (int x = start ; x <= stop ; ++x) {
         for (int y = start; y <= stop; ++y) {
             Coordinate cor (x,y);
-            double val = exp (- static_cast <double> (x*x + y*y) / (pow (kernelSize,2)));
+            double val = exp (- static_cast <double> (x*x + y*y) / (2.0 * pow (kernelSize/2,2)));
             distanceMask.insert(std::pair<Coordinate, double> (cor, val) );
 
         #ifdef DEBUG
@@ -87,16 +93,20 @@ void Filter::calcDistanceMask () {
 
 bool Filter::is_border (long index) {
     // верхняя
-    if ( index >= 0 && index <= f_width * (kernelSize - 1) / 2) { return true; }
+    if ( index >= 0 && index < f_width * (kernelSize / 2)) { return true; }
     // левая граница
-    if ( index % f_width < (kernelSize - 1) / 2) { return true; }
-    // нижняя
-    if (  index >= f_width * (f_height - (kernelSize - 1) / 2)) { return true; }
-    // правая
-    if (index % f_width >= f_width - (kernelSize - 1) / 2)  { return true; }
+    if ( index % f_width < (kernelSize  / 2)) { return true; }
+    // нижняя no test
+    if (  index > f_width * (f_height - (kernelSize  / 2))) { return true; }
+    // правая no test
+    if (index % f_width >= f_width - (kernelSize / 2))  { return true; }
     return false;
 }
 
+long Filter::reltCoorToIndex (const Coordinate & coor, long startIndex) {
+    return startIndex =startIndex
+            + coor.y_hei * f_width + coor.x_wid;
+}
 
 
 
