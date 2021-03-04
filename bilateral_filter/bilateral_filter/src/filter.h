@@ -1,8 +1,6 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#define DEBUG
-
 #include <QImage>
 #include <vector>
 #include <array>
@@ -38,8 +36,6 @@ private:
 private:
     std::map <Coordinate,double> distanceMask;
     std::array <double, 256> brightnessMask;
-
-
     Coordinate indToCoordnt (long index);
     long coordntToInd(const Coordinate & coor);
     long reltCoorToIndex(const Coordinate & coor, long startIndex);
@@ -47,7 +43,6 @@ private:
     void calcBrihtnessMask ();
     bool is_border (long index);
     void fillBorder ();
-
 public:
     Filter() = delete;
     Filter(const std::uint8_t * in_image ,
