@@ -38,10 +38,15 @@
 
 ### Сравнение: 
 1) без фильтра:
+
 ![](https://github.com/alehay/median_filter/blob/main/build-Debug/out/non_filter.png)
+
 2) медианный:
+
 ![](https://github.com/alehay/median_filter/blob/main/build-Debug/out/13.png)
+
 3) билатеральный:
+
 ![](https://github.com/alehay/bilateral_filter/blob/main/staff/1__k10__d25.png)
 
 
