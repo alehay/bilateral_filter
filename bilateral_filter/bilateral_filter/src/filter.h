@@ -17,6 +17,7 @@ private:
     int f_width;
     int f_height;
     int kernelSize;
+    int k_shld;
     double brightPar;
     std::vector <std::uint8_t>  in_img;
     std::vector <std::uint8_t> out_img;
@@ -40,11 +41,12 @@ private:
 
 
     Coordinate indToCoordnt (long index);
-    long coordntToInd(Coordinate coor);
+    long coordntToInd(const Coordinate & coor);
     long reltCoorToIndex(const Coordinate & coor, long startIndex);
     void calcDistanceMask ();
     void calcBrihtnessMask ();
     bool is_border (long index);
+    void fillBorder ();
 
 public:
     Filter() = delete;

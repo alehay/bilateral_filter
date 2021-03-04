@@ -1,23 +1,26 @@
-#include <cmath>
+﻿#include <cmath>
 #include "filter.h"
 #include <iostream>
 
 
 
 Filter::Filter(const std::uint8_t * in_image ,
-               int width, int height, int kernel, double bright):
-    f_width(width), f_height(height), in_img(width * height),
-    out_img(width * height) , kernelSize(kernel), brightPar (bright)
+    int width, int height, int ker, double bright):
+    f_width(width + ker*2), f_height(height + ker*2),
+    in_img( f_width * f_height),
+    out_img(width * height) , k_shld(ker), brightPar (bright)
 {
-    for (int i = 0; i < f_width * f_height; ++i ) {
-        if (i >= in_img.size()) {
-            qDebug() <<"warning : file size > " << width << "x" << height;
-            break;
+    kernelSize = 2 * k_shld + 1;
+    long j {0};
+    std::cout << "f_width" << f_width << ";" << "f_height" << f_height  << std::endl;
+    for (long i = 0; i < f_width *  f_height; ++i) {
+        if (is_border (i)) {
+            in_img [i] = 0;
+        } else {
+            in_img [i] = in_image[j++];
         }
-        if ( !(i % f_width)) { std::cout << std::endl;}
-        in_img [i] = in_image[i];
-
     }
+    fillBorder ();
     calcBrihtnessMask();
     calcDistanceMask ();
 }
@@ -27,16 +30,17 @@ Filter::Coordinate Filter::indToCoordnt (long index) {
    return out;
 };
 
-long Filter::coordntToInd (Coordinate coor) {
+long Filter::coordntToInd (const Coordinate & coor) {
     long index =  (static_cast <long> (coor.y_hei)) * f_width + coor.x_wid;
     return index;
 };
 
 void Filter::run () {
     //iteration over all pixels
-    for (int cell = 0; cell < f_width * f_height; ++cell) {
+    long ind_out{0};
+    for (long cell = 0; cell < f_width * f_height; ++cell) {
         // do not process the border
-        if (is_border (cell)) {out_img[cell] = in_img[cell]; continue;}
+        if (is_border (cell)) {continue;}
         // sum weight * pixel
         double sum_pixel{0};
         // sum weight
@@ -47,20 +51,21 @@ void Filter::run () {
             // pixel index by coordinate
             long pix_ind = reltCoorToIndex(coord, cell);
             int differenBriht = abs (in_img[pix_ind] - in_img [cell]);
-            //sum_weight +=  val * brightnessMask[differenBriht];
-            //sum_pixel += val * brightnessMask[differenBriht]*in_img[pix_ind];
+            sum_weight +=  val * brightnessMask[differenBriht];
+            sum_pixel += val * brightnessMask[differenBriht]*in_img[pix_ind];
 
             double weight =  val * brightnessMask[differenBriht];
             sum_weight +=  weight;
             sum_pixel += weight*in_img[pix_ind];
         }
-        out_img [cell] =static_cast <uint8_t> (sum_pixel/sum_weight);
+        out_img [ind_out++] = static_cast <uint8_t> (sum_pixel/sum_weight);
+        //out_img [ind_out++] = in_img[cell];
     }
 }
 
-//сохранение результата
+//сохранение результата !!!!!!!!!!!!
 bool  Filter::savePng(const QString & name) {
-    QImage image(out_img.data(), f_width, f_height, QImage::Format_Indexed8);
+    QImage image(out_img.data(), f_width - k_shld*2, f_height - k_shld *2 ,f_width - k_shld *2, QImage::Format_Indexed8);
     return image.save(name + ".png");
 }
 
@@ -91,21 +96,90 @@ void Filter::calcDistanceMask () {
     }
 }
 
-bool Filter::is_border (long index) {
+bool Filter::is_border (long cell) {
     // верхняя
-    if ( index >= 0 && index < f_width * (kernelSize / 2)) { return true; }
+    if ( cell >= 0 && cell < (f_width - 1) * (kernelSize / 2) ) { return true; }
     // левая граница
-    if ( index % f_width < (kernelSize  / 2)) { return true; }
-    // нижняя no test
-    if (  index > f_width * (f_height - (kernelSize  / 2))) { return true; }
-    // правая no test
-    if (index % f_width >= f_width - (kernelSize / 2))  { return true; }
+    if ( cell % f_width < (kernelSize / 2)) { return true; }
+    // нижняя
+    if (  cell >= f_width * (f_height - (kernelSize  / 2))) { return true; }
+    // правая
+    if (cell % f_width >= f_width - (kernelSize / 2))  { return true; }
     return false;
 }
 
 long Filter::reltCoorToIndex (const Coordinate & coor, long startIndex) {
     return startIndex =startIndex
             + coor.y_hei * f_width + coor.x_wid;
+}
+
+void Filter::fillBorder () {
+    // fill along the top edge
+    // left top point
+    long leftTopPoint = coordntToInd (Coordinate (k_shld,k_shld));
+    long leftBotPoint = coordntToInd (Coordinate (k_shld,f_height - k_shld - 1));
+    long rightTopPoint = coordntToInd (Coordinate(f_width - k_shld - 1,k_shld));
+    long rightBotPoint = coordntToInd (Coordinate(f_width-k_shld-1 ,f_height - k_shld-1));
+
+    for (long i_top = leftTopPoint ; i_top <= rightTopPoint ; ++i_top) {
+        for (int j = k_shld; j > 0 ; --j) {
+            in_img [i_top - j * f_width] = in_img [i_top + j * f_width];
+        }
+    }
+    // fill along the  Left edge
+    // left top point
+    for (long i_left = leftTopPoint ; i_left <= leftBotPoint ; i_left += f_width ) {
+        for (int j = k_shld; j >= 0 ; --j) {
+            in_img.at(i_left-j) = in_img.at(i_left+j);
+        }
+    }
+
+   // fill the bottom edge
+    for (long i_bot = leftBotPoint; i_bot <= rightBotPoint; ++i_bot) {
+        for (int j = k_shld; j > 0 ; --j) {
+            in_img.at(i_bot + j * f_width) = in_img.at(i_bot - j * f_width);
+        }
+    }
+
+    //fill the right edge
+    for(long i_right = rightTopPoint; i_right <= rightBotPoint; i_right += f_width) {
+        for (int j = k_shld; j > 0; --j) {
+            in_img.at(i_right + j) = in_img.at (i_right - j);
+        }
+    }
+
+    for (long i  = 0; i < k_shld * f_width + k_shld ; i += f_width ) {
+        for ( long j = i; j < i + k_shld ; ++j ) {
+            int temp = (in_img.at(j+k_shld)+ in_img.at(j+k_shld*f_width))/2;
+            in_img.at (j) = static_cast <uint8_t> (temp);
+        }
+    }
+
+    //fill right upper square
+    for (long i = f_width - k_shld  ; i <= f_width * k_shld; i += f_width ) {
+        for (long j = i ; j <  i + k_shld ; ++j) {
+            int temp = (in_img.at(j-k_shld) + in_img.at(j+k_shld*f_width))/2 ;
+            in_img.at (j) = static_cast <uint8_t> (temp);
+        }
+    }
+
+    //fill left botton
+    for (long i = (f_height - k_shld)*f_width; i < f_width * (f_height-1) + k_shld; i += f_width ) {
+        for (long j = i; j < i + k_shld ; ++ j) {
+            int temp = (in_img.at(j+k_shld) + in_img.at(j-k_shld*f_width))/2 ;
+            in_img.at (j) = static_cast <uint8_t> (temp);
+        }
+    }
+
+    //fill riht botton
+    for (long i = ((f_height - k_shld + 1)*f_width - k_shld ); i < f_width * f_height; i += f_width) {
+        for (long j = i; j < i + k_shld ; ++ j) {
+            int temp = (in_img.at(j-k_shld) + in_img.at(j-k_shld*f_width))/2;
+            in_img.at (j) = static_cast <uint8_t> (temp);
+        }
+    }
+
+
 }
 
 
