@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
         QString lastBit = fileIndex.section("/", -1, -1);
         QStringList name = lastBit.split('.');
         for (int k = 5; k < 30; k += 5) {
-            for (int d = 5; d < 50 ; d += 10){
+            for (int d = 5; d <= 50 ; d += 10){
                 Filter filter (img.constBits (),img.width () ,img.height (), k, d);
                 filter.run ();
                 QString num;
