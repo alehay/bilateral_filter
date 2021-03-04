@@ -36,6 +36,15 @@
 
 ![](http://latex.codecogs.com/gif.latex?\dpi{170}&space;e^{-\frac{({I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}})^2}&space;{2d^2}}&space;) -множитель разности в яркости ;
 
+### Сравнение: 
+1) без фильтра:
+![](https://github.com/alehay/median_filter/blob/main/build-Debug/out/non_filter.png)
+2) медианный:
+![](https://github.com/alehay/median_filter/blob/main/build-Debug/out/13.png)
+3) билатеральный:
+![](https://github.com/alehay/bilateral_filter/blob/main/staff/1__k10__d25.png)
+
+
 
 ### Смысл данного данного фильтра прост: 
 
