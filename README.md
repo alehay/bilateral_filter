@@ -56,3 +56,6 @@ gif  ядро с плечем 8 параметр d от 5 до 45 с шагом 
 
 ядро с плечем 17 параметр d от 5 до 45 c шагом 5
 ![](https://github.com/alehay/bilateral_filter/blob/main/staff/k_17.gif)
+
+ядро с плечем 23 d от 5 до 45 с шагом 5 
+![](https://github.com/alehay/bilateral_filter/blob/main/staff/k_23.gif)
