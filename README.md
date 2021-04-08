@@ -4,17 +4,17 @@
  авторы А. И. Новиков, А. В. Пронькин;
 
 авторы используют простую аддитивную модель: 
-![](http://latex.codecogs.com/gif.latex?\dpi{120}&space;$$I_{ij}&space;=&space;U_{ij}&space;&space;&plus;&space;{\xi}_{ij}&space;)
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE I_{ij}=U_{ij}%2B\xi_{ij}">
 
 где:
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;I_{ij}) - исходное изображение;
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE I_{ij}"> - исходное изображение;
 
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;U_{ij}) - полезный сигнал;
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE U_{ij}"> - полезный сигнал;
 
-![](http://latex.codecogs.com/gif.latex?\dpi{100}&space;{\xi}_{ij}) -  помехи;
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE \xi_{ij}"> -  помехи;
 
 
-### Проблематика рассмотренная в статье:
+### Проблематика, рассмотренная в статье:
 
 Наибольшие искажения при работе обычных фильтров, основанных на линейных операторах, например [медианного](https://github.com/alehay/median_filter) происходят на границе резкого перепада яркостей:
 
@@ -23,29 +23,30 @@
 ### Предложенное решение:
 Авторы статьи предлагают использовать билатеральный фильтр , основанный на нелинейном операторе:
 
-![](http://latex.codecogs.com/gif.latex?\dpi{190}&space;\frac{{\sum_{s=-k}^k}{\sum_{t=-k}^k}I_{i&plus;s,j&plus;t}*W_{st}}{{&space;\sum_{s=-k}^k}{\sum_{t=-k}^k}*{W_{st}}}&space;)  
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE \frac{\sum_{s=-k}^{k}\sum_{t=-k}^{k} I_{i%2Bs,j%2Bt} \cdot W_{st}}{\sum_{s=-k}^{k}\sum_{t=-k}^{k} I_{i%2Bs,j%2Bt} W_{st}}">
 
 
 где:  
 
-![](http://latex.codecogs.com/gif.latex?\dpi{200}&space;W_{st}&space;=&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}}&space;*&space;&space;e^{-\frac{I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}}&space;{2d^2}}&space;)
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE W_{st}=e^{-\frac{s^2%2Bt^2}{2k^2}} \cdot e^{-\frac{I_{i%2Bs,j%2Bt}-I_{ij}}{2d^2}}">
+
 
 в свою очередь:
 
-![](http://latex.codecogs.com/gif.latex?\dpi{170}&space;e^{-\frac{s^2&space;&plus;&space;t^2}&space;{2k^2}})   -множитель расстояния;
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE e^{-\frac{s^2%2Bt^2}{2k^2}}"> &ndash; множитель расстояния;
 
-![](http://latex.codecogs.com/gif.latex?\dpi{170}&space;e^{-\frac{({I__{i&plus;s,j&plus;t}&space;-&space;I__{ij}})^2}&space;{2d^2}}&space;) -множитель разности в яркости ;
+<img src="https://render.githubusercontent.com/render/math?math=\LARGE e^{-\frac{I_{i%2Bs,j%2Bt}-I_{ij}}{2d^2}}"> &ndash; множитель разности в яркости;
 
 ### Сравнение: 
-1) без фильтра:
+1) Без фильтра:
 
 ![](https://github.com/alehay/median_filter/blob/main/build-Debug/out/non_filter.png)
 
-2) медианный:
+2) Медианный:
 
 ![](https://github.com/alehay/median_filter/blob/main/build-Debug/out/13.png)
 
-3) билатеральный:
+3) Билатеральный:
 
 ![](https://github.com/alehay/bilateral_filter/blob/main/staff/1__k10__d25.png)
 
